@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Grid, AppBar, Toolbar, TextField, Typography, Card, CardContent } from '@material-ui/core';
 
+import userAxios from '../../userAxios'
+
 const MainPage = () => {
+    const [user, setUser] = useState([]);
+
+    useEffect(() => {
+        userAxios.get("/")
+            .then((response) => {
+                setUser(response.data)
+            })
+    }, []);
+
     return (
         <>
             <AppBar position="static" style={{ marginBottom: 20 }}>
@@ -20,14 +31,18 @@ const MainPage = () => {
                             placeholder="Type User Name" />
                     </Grid>
                     <Grid item container>
-                        <Card style={{ width: '100%' }}>
-                            <CardContent>
-                                <Grid container justify="space-between">
-                                    <p>Name : mani</p>
-                                    <p>TimeZone : kumaar</p>
-                                </Grid>
-                            </CardContent>
-                        </Card>
+                        {
+                            user.map((item) => (
+                                <Card style={{ width: '100%' }}>
+                                    <CardContent>
+                                        <Grid container justify="space-between">
+                                            <p>Name : {item.real_name}</p>
+                                            <p>TimeZone : {item.tz}</p>
+                                        </Grid>
+                                    </CardContent>
+                                </Card>
+                            ))
+                        }
                     </Grid>
                 </Grid>
             </Container>
