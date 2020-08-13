@@ -1,11 +1,15 @@
 import React from 'react';
-import { Container, Grid, AppBar, Toolbar, TextField } from '@material-ui/core';
+import { Container, Grid, AppBar, Toolbar, TextField, Typography } from '@material-ui/core';
 
 const MainPage = ()=>{
     return (
         <>
         <AppBar position="static" style={{marginBottom: 20}}>
-            <Toolbar></Toolbar>
+            <Toolbar>
+                <Typography variant="h6">
+                    FTL Assignment | Mani
+                </Typography>
+            </Toolbar>
         </AppBar>
         <Container maxWidth="sm">
             <Grid container direction="column" alignItems="center">
